@@ -1,7 +1,20 @@
-## Angular svg base fix
+# Angular svg base fix
 
-A small directive for fixing SVG `xlink:href` within a document with a base tag
+A small directive for fixing SVG ``xlink:href`` within a document with a base tag
 
+### Installation
+
+via npm:
+
+```
+npm install angular-svg-base-fix
+```
+
+via bower:
+
+```
+bower install angular-svg-base-fix
+```
 
 ### How to use
 
