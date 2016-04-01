@@ -18,6 +18,14 @@ bower install angular-svg-base-fix
 
 ### How to use
 
+```javascript
+angular
+  .module( 'myApp', ['svgBaseFix'] )
+  .config( function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  });
+```
+
 ```html
 <svg>
   <use svg-base-fix xlink:href="#icon-name"></use>
