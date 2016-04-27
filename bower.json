@@ -1,7 +1,7 @@
 {
   "name": "angular-svg-base-fix",
   "description": "Angular directive for fixing SVG attributes within a document with a base tag",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "main": "src/svgBaseFix.js",
   "authors": [
     "everdimension"
