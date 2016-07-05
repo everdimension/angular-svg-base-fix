@@ -17,30 +17,33 @@
   'use strict';
 
   var moduleName = 'svgBaseFix';
+  var attr = 'xlinkHref';
+
   angular.module(moduleName, [])
 
-    .directive('svgBaseFix', ['$rootScope', function($rootScope) {
+    .directive(attr, ['$rootScope', function ($rootScope) {
       return {
         restrict: 'A',
-        link: function(scope, element, attrs) {
-          var attr = 'xlinkHref';
+        link: function (scope, element, attrs) {
+          var initialHref = attrs[attr];
+          var parsingNode;
 
-          var initialUrl = attrs[attr];
-          var parsingNode = document.createElement('a');
+          if (initialHref && initialHref.indexOf('#') === 0) {
+            parsingNode = document.createElement('a')
 
-          attrs.$observe(attr, updateValue);
-          $rootScope.$on('$locationChangeSuccess', updateValue);
+            attrs.$observe(attr, updateValue);
+            $rootScope.$on('$locationChangeSuccess', updateValue);
 
-          function updateValue() {
-            var newVal;
-            parsingNode.setAttribute(
-              'href',
-              location.pathname + location.search + initialUrl
-            );
-            newVal = parsingNode.toString();
-
-            if (newVal && attrs[attr] !== newVal) {
-              attrs.$set(attr, parsingNode.toString());
+            function updateValue() {
+              var newVal;
+              parsingNode.setAttribute(
+                'href',
+                location.pathname + location.search + initialHref
+              );
+              newVal = parsingNode.toString();
+              if (newVal && attrs[attr] !== newVal) {
+                attrs.$set(attr, newVal);
+              }
             }
           }
         }
