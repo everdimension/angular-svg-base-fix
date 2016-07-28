@@ -1,6 +1,7 @@
 # Angular svg base fix
 
 A small directive for fixing SVG ``xlink:href`` within a document with a base tag
+
 Description of the problem — [#8934](https://github.com/angular/angular.js/issues/8934)
 
 ### Installation
