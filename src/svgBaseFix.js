@@ -28,22 +28,24 @@
           var initialHref = attrs[attr];
           var parsingNode;
 
-          if (initialHref && initialHref.indexOf('#') === 0) {
-            parsingNode = document.createElement('a')
+          if (!initialHref || initialHref.charAt(0) !== '#') {
+            return;
+          }
 
-            attrs.$observe(attr, updateValue);
-            $rootScope.$on('$locationChangeSuccess', updateValue);
+          parsingNode = document.createElement('a');
 
-            function updateValue() {
-              var newVal;
-              parsingNode.setAttribute(
-                'href',
-                location.pathname + location.search + initialHref
-              );
-              newVal = parsingNode.toString();
-              if (newVal && attrs[attr] !== newVal) {
-                attrs.$set(attr, newVal);
-              }
+          attrs.$observe(attr, updateValue);
+          $rootScope.$on('$locationChangeSuccess', updateValue);
+
+          function updateValue() {
+            var newVal;
+            parsingNode.setAttribute(
+              'href',
+              location.pathname + location.search + initialHref
+            );
+            newVal = parsingNode.toString();
+            if (newVal && attrs[attr] !== newVal) {
+              attrs.$set(attr, newVal);
             }
           }
         }
